@@ -48,4 +48,7 @@ rm -rf dynamips
 curl -fsSL https://get.docker.com | VERSION=v20.10.22 bash
 sudo usermod -aG docker $(whoami)
 
+# Enable wireshark for all users
+sudo chmod 755 /usr/bin/dumpcap
+
 echo "Please restart your shell"

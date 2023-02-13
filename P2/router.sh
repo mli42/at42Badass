@@ -1,11 +1,13 @@
 #!/usr/bin/env sh
 
-# GNS3 start command: sh router.sh <staticcast/multicast> >> /var/log/badass
+# GNS3 start command: sh router.sh <staticcast/multicast>
 
 LOG_FILE="/var/log/badass"
+exec 3<&1 2>&1 1>${LOG_FILE}
+
 HOST_ID=$(echo ${HOSTNAME} | sed -E 's/.+-//')
 TARGET_ID=$([ "${HOST_ID}" -ne "1" ] && echo 1 || echo 2)
-echo "This is: ${HOSTNAME}" >> ${LOG_FILE}
+echo "This is: ${HOSTNAME}"
 
 CASTTYPE="${1}"
 STATIC_CAST="staticcast"
@@ -45,5 +47,5 @@ echo "You can inspect with:"
 echo "- ip -d link show vxlan10"
 echo "- ip addr show eth0"
 
-/usr/lib/frr/docker-start >> ${LOG_FILE} &
-tail -f ${LOG_FILE}
+/usr/lib/frr/docker-start &
+tail -f ${LOG_FILE} >&3

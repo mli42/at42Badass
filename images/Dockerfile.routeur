@@ -11,3 +11,7 @@ RUN sed -i \
   /etc/frr/daemons
 
 COPY ./P2/router.sh .
+
+COPY ./P3/evpn.sh .
+COPY ./P3/spine_vtysh.sh .
+COPY ./P3/leaf_vtysh.sh .

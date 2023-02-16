@@ -1,3 +1,4 @@
 FROM alpine:3.17.1
 
 COPY ./P2/host.sh .
+COPY ./P3/p3_host.sh .
